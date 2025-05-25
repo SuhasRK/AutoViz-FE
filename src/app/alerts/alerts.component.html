@@ -1,0 +1,12 @@
+<div class="header">
+  <button mat-raised-button color="primary" (click)="openAutoVizDialog()">Visualize</button>
+</div>
+
+<ag-grid-angular
+  style="width: 100%; height: 400px;"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [modules]="modules"
+  [sideBar]="sideBar"
+  (gridReady)="onGridReady($event)"
+></ag-grid-angular>

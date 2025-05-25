@@ -1,0 +1,32 @@
+<div class="chart-container">
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Analysing data...</p>
+  </div>
+
+  <div *ngIf="!loading && analyzedData" class="chart-grid">
+    <div *ngFor="let key of objectKeys(analyzedData); let i = index" class="chart-item">
+      <h3>Chart {{i+1}}</h3>
+      <highcharts-chart
+        [Highcharts]="Highcharts"
+        [options]="analyzedData[key]"
+        style="width: 100%; height: 400px; display: block;">
+      </highcharts-chart>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="insights-container">
+  <button class="dropdown-btn" (click)="toggleInsights()">
+    View Insights
+    <i class="fas arrow-icon" [ngClass]="{'fa-chevron-down': !showInsights, 'fa-chevron-up': showInsights}"></i>
+  </button>
+
+  <div *ngIf="showInsights" class="insights-dropdown">
+    <ul>
+      <li *ngFor="let insight of insightsList">{{ insight }}</li>
+    </ul>
+  </div>
+</div>
+
+<button class="close-btn" (click)="closeDialog()">Close</button>
